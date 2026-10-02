@@ -3,15 +3,19 @@ const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/img/users");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1] || "jpeg";
-    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
-  },
-});
+const isVercel = Boolean(process.env.VERCEL);
+
+const multerStorage = isVercel
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, "public/img/users");
+      },
+      filename: (req, file, cb) => {
+        const ext = file.mimetype.split("/")[1] || "jpeg";
+        cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
+      },
+    });
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -53,7 +57,12 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) Filter fields that are allowed to be updated by users
   const filteredBody = filterObj(req.body, "name", "email");
   if (req.file) {
-    filteredBody.photo = `/api/v1/public/img/users/${req.file.filename}`;
+    if (req.file.buffer) {
+      const b64 = Buffer.from(req.file.buffer).toString("base64");
+      filteredBody.photo = `data:${req.file.mimetype};base64,${b64}`;
+    } else if (req.file.filename) {
+      filteredBody.photo = `/api/v1/public/img/users/${req.file.filename}`;
+    }
   }
 
   if (Object.keys(filteredBody).length === 0) {
