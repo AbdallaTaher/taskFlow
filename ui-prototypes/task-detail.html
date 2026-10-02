@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Task Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f3f7ff",
+                100: "#e6edff",
+                200: "#cedcff",
+                500: "#5b7cff",
+                600: "#3d67ff",
+                700: "#294cd8",
+                900: "#101a3d",
+              },
+              plum: "#7c5cff",
+              mint: "#4adeb8",
+              ink: "#0b1120",
+            },
+            boxShadow: {
+              luxe: "0 30px 80px rgba(52, 78, 160, 0.18)",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(124, 92, 255, 0.12),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(96, 165, 250, 0.12),
+            transparent 26%
+          ),
+          linear-gradient(135deg, #070b14 0%, #0b1221 28%, #090d18 100%);
+      }
+      .panel {
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .panel:hover {
+        transform: translateY(-4px);
+        border-color: rgba(147, 160, 255, 0.35);
+      }
+    </style>
+  </head>
+  <body class="antialiased text-slate-200">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden">
+      <div
+        class="absolute left-[-10%] top-10 h-80 w-80 rounded-full bg-violet-500/15 blur-3xl"
+      ></div>
+      <div
+        class="absolute right-[-12%] bottom-0 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl"
+      ></div>
+    </div>
+
+    <div class="relative mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+      <div class="mb-6 flex items-center justify-between">
+        <div>
+          <p
+            class="text-sm font-bold uppercase tracking-[0.22em] text-violet-300"
+          >
+            Task detail
+          </p>
+          <h1 class="mt-2 text-3xl font-black tracking-tight text-white">
+            Launch checklist
+          </h1>
+        </div>
+        <button
+          class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 shadow-sm"
+        >
+          Back to dashboard
+        </button>
+      </div>
+
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div
+          class="panel rounded-[30px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-[0_30px_80px_rgba(2,6,23,0.7)] backdrop-blur-xl"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 text-violet-200"
+              >
+                <i data-lucide="calendar-range"></i>
+              </div>
+              <div>
+                <div class="text-sm text-slate-400">Priority project</div>
+                <div class="font-black text-white">Product launch</div>
+              </div>
+            </div>
+            <span
+              class="rounded-full bg-violet-500/10 px-2.5 py-1 text-[11px] font-bold text-violet-200"
+              >High priority</span
+            >
+          </div>
+
+          <div
+            class="mt-6 rounded-[26px] bg-gradient-to-br from-violet-500/10 via-[#0d1525] to-blue-500/5 p-5 ring-1 ring-white/10"
+          >
+            <div class="flex items-center justify-between">
+              <div
+                class="text-sm font-bold uppercase tracking-[0.22em] text-slate-400"
+              >
+                Progress
+              </div>
+              <div class="text-sm font-bold text-violet-200">68%</div>
+            </div>
+            <div class="mt-4 h-2.5 rounded-full bg-white/5">
+              <div
+                class="h-2.5 w-[68%] rounded-full bg-gradient-to-r from-violet-500 to-blue-500"
+              ></div>
+            </div>
+          </div>
+
+          <div class="mt-8 space-y-6">
+            <div>
+              <h2
+                class="text-sm font-bold uppercase tracking-[0.22em] text-slate-400"
+              >
+                Description
+              </h2>
+              <p class="mt-3 text-slate-300 leading-7">
+                Finalize the launch checklist for the new product release,
+                validate the QA signoff, and confirm all customer-facing
+                messaging is ready before the public announcement.
+              </p>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-3">
+              <div
+                class="rounded-2xl bg-white/5 p-4 shadow-inner ring-1 ring-white/5"
+              >
+                <div
+                  class="text-[11px] uppercase tracking-[0.2em] text-slate-400"
+                >
+                  Due
+                </div>
+                <div class="mt-2 font-black text-white">Today</div>
+              </div>
+              <div
+                class="rounded-2xl bg-violet-500/5 p-4 shadow-inner ring-1 ring-white/5"
+              >
+                <div
+                  class="text-[11px] uppercase tracking-[0.2em] text-slate-400"
+                >
+                  Owner
+                </div>
+                <div class="mt-2 font-black text-white">Maya</div>
+              </div>
+              <div
+                class="rounded-2xl bg-emerald-500/5 p-4 shadow-inner ring-1 ring-white/5"
+              >
+                <div
+                  class="text-[11px] uppercase tracking-[0.2em] text-slate-400"
+                >
+                  Status
+                </div>
+                <div class="mt-2 font-black text-white">In progress</div>
+              </div>
+            </div>
+
+            <div>
+              <h2
+                class="text-sm font-bold uppercase tracking-[0.22em] text-slate-400"
+              >
+                Checklist
+              </h2>
+              <div class="mt-4 space-y-3">
+                <div
+                  class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <input
+                    type="checkbox"
+                    checked
+                    class="h-5 w-5 rounded border-slate-300 bg-slate-900 text-violet-500"
+                  />
+                  <span class="text-slate-200">Confirm customer messaging</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <input
+                    type="checkbox"
+                    checked
+                    class="h-5 w-5 rounded border-slate-300 bg-slate-900 text-violet-500"
+                  />
+                  <span class="text-slate-200">Validate readiness with QA</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <input
+                    type="checkbox"
+                    class="h-5 w-5 rounded border-slate-300 bg-slate-900 text-violet-500"
+                  />
+                  <span class="text-slate-200"
+                    >Publish launch brief to stakeholders</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <h2
+                class="text-sm font-bold uppercase tracking-[0.22em] text-slate-400"
+              >
+                More tasks in this queue
+              </h2>
+              <div class="mt-4 space-y-3">
+                <div
+                  class="rounded-[22px] border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <div>
+                      <div class="font-bold text-white">Messaging review</div>
+                      <div class="text-xs text-slate-400">
+                        Marketing • Today
+                      </div>
+                    </div>
+                    <span
+                      class="rounded-full bg-emerald-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-300"
+                      >Ready</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="rounded-[22px] border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <div>
+                      <div class="font-bold text-white">Stakeholder update</div>
+                      <div class="text-xs text-slate-400">Ops • Tomorrow</div>
+                    </div>
+                    <span
+                      class="rounded-full bg-amber-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300"
+                      >In review</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="rounded-[22px] border border-white/10 bg-white/5 p-3 shadow-sm"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <div>
+                      <div class="font-bold text-white">
+                        Beta feedback sweep
+                      </div>
+                      <div class="text-xs text-slate-400">Product • Thu</div>
+                    </div>
+                    <span
+                      class="rounded-full bg-violet-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-violet-200"
+                      >Queued</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div
+            class="panel rounded-[30px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-[0_30px_80px_rgba(2,6,23,0.7)] backdrop-blur-xl"
+          >
+            <h2 class="text-lg font-black text-white">Activity</h2>
+            <div class="mt-5 space-y-4 text-sm text-slate-300">
+              <div class="rounded-2xl bg-white/5 p-3 ring-1 ring-white/5">
+                <div class="flex gap-3">
+                  <div
+                    class="mt-1 h-2.5 w-2.5 rounded-full bg-violet-400"
+                  ></div>
+                  <div>
+                    <div class="font-bold text-white">Updated by Maya</div>
+                    <div>Today, 9:30 AM</div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl bg-emerald-500/5 p-3 ring-1 ring-white/5">
+                <div class="flex gap-3">
+                  <div
+                    class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-400"
+                  ></div>
+                  <div>
+                    <div class="font-bold text-white">
+                      QA approval submitted
+                    </div>
+                    <div>Today, 8:15 AM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="panel rounded-[30px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-[0_30px_80px_rgba(2,6,23,0.7)] backdrop-blur-xl"
+          >
+            <h2 class="text-lg font-black text-white">Quick actions</h2>
+            <div class="mt-5 space-y-3">
+              <button
+                class="w-full rounded-2xl bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-3 font-semibold text-white shadow-lg shadow-violet-500/20"
+              >
+                Mark as complete
+              </button>
+              <button
+                class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-semibold text-slate-200"
+              >
+                Edit task
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+      gsap.from(".panel", {
+        opacity: 0,
+        y: 16,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+    </script>
+  </body>
+</html>

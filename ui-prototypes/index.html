@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow Prototype Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#eef4ff",
+                100: "#dfeaff",
+                200: "#c7d9ff",
+                500: "#6a7cff",
+                600: "#586df0",
+                700: "#4f5fe8",
+                900: "#101a3d",
+              },
+              plum: "#8e7bff",
+              mint: "#5ee5c1",
+              ink: "#eaf1ff",
+            },
+            boxShadow: {
+              luxe: "0 25px 70px rgba(76, 91, 190, 0.25)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #070b14 0%,
+          #0d1422 30%,
+          #0b1220 100%
+        );
+      }
+    </style>
+  </head>
+  <body class="min-h-screen antialiased text-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <p
+          class="text-sm font-bold uppercase tracking-[0.22em] text-violet-300"
+        >
+          Prototype selection
+        </p>
+        <h1 class="mt-3 text-4xl font-black tracking-tight text-white">
+          TaskFlow UI directions
+        </h1>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <a
+          href="landing.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            01
+          </div>
+          <h2 class="text-2xl font-black text-white">Landing</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Premium SaaS hero section with motion and product storytelling.
+          </p>
+        </a>
+
+        <a
+          href="login.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            02
+          </div>
+          <h2 class="text-2xl font-black text-white">Login</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Clean auth experience with soft glass cards, gradient accents, and
+            subtle motion.
+          </p>
+        </a>
+
+        <a
+          href="signup.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            03
+          </div>
+          <h2 class="text-2xl font-black text-white">Signup</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Strong onboarding screen with premium contrast and a crisp
+            conversion focus.
+          </p>
+        </a>
+
+        <a
+          href="dashboard.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            04
+          </div>
+          <h2 class="text-2xl font-black text-white">Dashboard</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Operational overview with analytics cards and task management
+            panels.
+          </p>
+        </a>
+
+        <a
+          href="tasks.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            05
+          </div>
+          <h2 class="text-2xl font-black text-white">Tasks</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Table-based task summary with clickable rows routed to the detail
+            page.
+          </p>
+        </a>
+
+        <a
+          href="task-detail.html"
+          class="rounded-[28px] border border-white/10 bg-[#0d1525]/90 p-6 shadow-luxe transition hover:-translate-y-1"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-violet-500/15 px-3 py-2 text-sm font-bold text-violet-200"
+          >
+            06
+          </div>
+          <h2 class="text-2xl font-black text-white">Task detail</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">
+            Expanded task context for priority work, status, and checkpoint
+            visibility.
+          </p>
+        </a>
+
+        <div
+          class="rounded-[28px] border border-dashed border-white/10 bg-white/5 p-6 shadow-sm"
+        >
+          <div
+            class="mb-4 inline-flex rounded-2xl bg-white/5 px-3 py-2 text-sm font-bold text-slate-100"
+          >
+            04 options
+          </div>
+          <h2 class="text-2xl font-black text-white">Visual modes</h2>
+          <ul class="mt-3 space-y-2 text-sm text-slate-300">
+            <li>• Luxury minimal</li>
+            <li>• Dark futuristic</li>
+            <li>• Playful creative</li>
+            <li>• Enterprise professional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

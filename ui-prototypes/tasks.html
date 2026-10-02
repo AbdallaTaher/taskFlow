@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Tasks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f3f7ff",
+                100: "#e6edff",
+                200: "#cedcff",
+                500: "#5b7cff",
+                600: "#3d67ff",
+                700: "#294cd8",
+                900: "#101a3d",
+              },
+              plum: "#7c5cff",
+              mint: "#4adeb8",
+              ink: "#0b1120",
+            },
+            boxShadow: {
+              luxe: "0 30px 80px rgba(52, 78, 160, 0.18)",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(124, 92, 255, 0.14),
+            transparent 24%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(96, 165, 250, 0.12),
+            transparent 28%
+          ),
+          linear-gradient(135deg, #070b14 0%, #0b1220 28%, #090d18 100%);
+      }
+      .glass {
+        background: rgba(13, 19, 31, 0.84);
+        backdrop-filter: blur(18px);
+      }
+      .panel {
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .panel:hover {
+        transform: translateY(-4px);
+        border-color: rgba(147, 160, 255, 0.35);
+      }
+      .task-row {
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .task-row:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+    </style>
+  </head>
+  <body class="antialiased text-white">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden">
+      <div
+        class="absolute left-[-10%] top-12 h-80 w-80 rounded-full bg-violet-500/20 blur-3xl"
+      ></div>
+      <div
+        class="absolute right-[-8%] bottom-10 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl"
+      ></div>
+    </div>
+
+    <div class="relative min-h-screen">
+      <aside
+        class="fixed left-0 top-0 hidden h-screen w-72 border-r border-white/10 bg-[#0a1120]/85 p-6 shadow-[0_30px_80px_rgba(2,6,23,0.7)] backdrop-blur-xl lg:block"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-blue-500 text-white shadow-lg shadow-violet-500/20"
+          >
+            <i data-lucide="check-check"></i>
+          </div>
+          <div class="text-2xl font-black text-white">TaskFlow</div>
+        </div>
+
+        <nav class="mt-10 space-y-2">
+          <a
+            href="dashboard.html"
+            class="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-300 transition hover:bg-white/5"
+            ><i data-lucide="layout-grid"></i> Dashboard</a
+          >
+          <a
+            href="tasks.html"
+            class="flex items-center gap-3 rounded-2xl bg-gradient-to-r from-violet-500/15 to-indigo-500/10 px-4 py-3 font-bold text-violet-200 shadow-sm ring-1 ring-white/10"
+            ><i data-lucide="list-checks"></i> Tasks</a
+          >
+          <a
+            href="landing.html"
+            class="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-300 transition hover:bg-white/5"
+            ><i data-lucide="folder-kanban"></i> Landing</a
+          >
+          <a
+            href="login.html"
+            class="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-300 transition hover:bg-white/5"
+            ><i data-lucide="calendar-range"></i> Login</a
+          >
+          <a
+            href="signup.html"
+            class="flex items-center gap-3 rounded-2xl px-4 py-3 text-slate-300 transition hover:bg-white/5"
+            ><i data-lucide="settings"></i> Signup</a
+          >
+        </nav>
+
+        <div
+          class="mt-10 rounded-[28px] bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-500 p-5 text-white shadow-[0_30px_80px_rgba(76,87,255,0.35)]"
+        >
+          <div class="text-sm text-violet-100">This week</div>
+          <div class="mt-2 text-3xl font-black">8 Tasks</div>
+          <button
+            class="mt-5 w-full rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-white ring-1 ring-white/20"
+          >
+            + New Task
+          </button>
+        </div>
+      </aside>
+
+      <main class="lg:ml-72">
+        <header
+          class="border-b border-white/10 bg-[#0a1120]/80 backdrop-blur-xl"
+        >
+          <div
+            class="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8"
+          >
+            <div>
+              <p class="text-sm font-medium text-slate-400">Overview</p>
+              <h1 class="text-2xl font-black tracking-tight text-white">
+                Tasks
+              </h1>
+            </div>
+            <div class="flex items-center gap-3">
+              <a
+                href="index.html"
+                class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-200 shadow-sm"
+                >Prototype hub</a
+              >
+              <button
+                class="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200 shadow-sm"
+              >
+                <i data-lucide="search" class="h-4 w-4"></i> Search
+              </button>
+              <div
+                class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-violet-500/20 to-blue-500/20 text-sm font-black text-violet-100 ring-1 ring-white/10"
+              >
+                MC
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="space-y-8 p-4 sm:p-6 lg:p-8">
+          <section class="grid gap-4 md:grid-cols-3">
+            <div
+              class="panel rounded-[28px] border border-white/10 bg-gradient-to-br from-emerald-500/10 via-[#0d1525] to-emerald-500/5 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-medium text-slate-300">Completed</p>
+                <span
+                  class="rounded-full bg-emerald-500/10 px-2 py-1 text-[11px] font-bold text-emerald-300"
+                  >+12%</span
+                >
+              </div>
+              <div class="mt-5 text-3xl font-black text-white">24</div>
+            </div>
+            <div
+              class="panel rounded-[28px] border border-white/10 bg-gradient-to-br from-amber-500/10 via-[#0d1525] to-orange-500/5 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-medium text-slate-300">In progress</p>
+                <span
+                  class="rounded-full bg-amber-500/10 px-2 py-1 text-[11px] font-bold text-amber-300"
+                  >3 active</span
+                >
+              </div>
+              <div class="mt-5 text-3xl font-black text-white">7</div>
+            </div>
+            <div
+              class="panel rounded-[28px] border border-white/10 bg-gradient-to-br from-violet-500/10 via-[#0d1525] to-blue-500/5 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+            >
+              <div class="flex items-center justify-between">
+                <p class="text-sm font-medium text-slate-300">Focus score</p>
+                <span
+                  class="rounded-full bg-violet-500/10 px-2 py-1 text-[11px] font-bold text-violet-200"
+                  >Good</span
+                >
+              </div>
+              <div class="mt-5 text-3xl font-black text-white">86%</div>
+            </div>
+          </section>
+
+          <section
+            class="panel rounded-[30px] border border-white/10 bg-[#0d1525]/90 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+          >
+            <div class="mb-6 flex items-center justify-between">
+              <div>
+                <h2 class="text-xl font-black text-white">Task summary</h2>
+                <p class="mt-1 text-sm text-slate-400">
+                  A quick overview of your active work and upcoming priorities.
+                </p>
+              </div>
+              <button
+                class="rounded-full bg-gradient-to-r from-violet-500 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-500/20"
+              >
+                + New task
+              </button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table
+                class="w-full min-w-[900px] border-separate border-spacing-y-2 text-left text-sm text-slate-200"
+              >
+                <thead>
+                  <tr class="text-slate-400">
+                    <th class="px-4 py-2 font-medium">Task</th>
+                    <th class="px-4 py-2 font-medium">Project</th>
+                    <th class="px-4 py-2 font-medium">Owner</th>
+                    <th class="px-4 py-2 font-medium">Due</th>
+                    <th class="px-4 py-2 font-medium">Priority</th>
+                    <th class="px-4 py-2 font-medium">Status</th>
+                    <th class="px-4 py-2 font-medium">Progress</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    class="task-row rounded-2xl border border-white/10 bg-white/5"
+                    data-href="task-detail.html"
+                  >
+                    <td
+                      class="rounded-l-2xl border border-r-0 border-white/10 px-4 py-3 font-bold text-white"
+                    >
+                      Launch checklist
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Product launch
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Maya
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Today
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-violet-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-violet-200"
+                        >High</span
+                      >
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-amber-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300"
+                        >In progress</span
+                      >
+                    </td>
+                    <td class="rounded-r-2xl border border-white/10 px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="h-2 w-28 rounded-full bg-white/10">
+                          <div
+                            class="h-2 w-[68%] rounded-full bg-gradient-to-r from-violet-500 to-blue-500"
+                          ></div>
+                        </div>
+                        <span class="text-xs text-slate-300">68%</span>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr
+                    class="task-row rounded-2xl border border-white/10 bg-white/5"
+                    data-href="task-detail.html"
+                  >
+                    <td
+                      class="rounded-l-2xl border border-r-0 border-white/10 px-4 py-3 font-bold text-white"
+                    >
+                      Design review
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Product team
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Alex
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      9:00 AM
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-emerald-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-300"
+                        >Low</span
+                      >
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-emerald-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-300"
+                        >Done</span
+                      >
+                    </td>
+                    <td class="rounded-r-2xl border border-white/10 px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="h-2 w-28 rounded-full bg-white/10">
+                          <div
+                            class="h-2 w-[100%] rounded-full bg-gradient-to-r from-emerald-400 to-teal-300"
+                          ></div>
+                        </div>
+                        <span class="text-xs text-slate-300">100%</span>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr
+                    class="task-row rounded-2xl border border-white/10 bg-white/5"
+                    data-href="task-detail.html"
+                  >
+                    <td
+                      class="rounded-l-2xl border border-r-0 border-white/10 px-4 py-3 font-bold text-white"
+                    >
+                      Sprint planning
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Engineering
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Nina
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Tomorrow
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-amber-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300"
+                        >Medium</span
+                      >
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-amber-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-300"
+                        >Review</span
+                      >
+                    </td>
+                    <td class="rounded-r-2xl border border-white/10 px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="h-2 w-28 rounded-full bg-white/10">
+                          <div
+                            class="h-2 w-[54%] rounded-full bg-gradient-to-r from-amber-400 to-orange-300"
+                          ></div>
+                        </div>
+                        <span class="text-xs text-slate-300">54%</span>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr
+                    class="task-row rounded-2xl border border-white/10 bg-white/5"
+                    data-href="task-detail.html"
+                  >
+                    <td
+                      class="rounded-l-2xl border border-r-0 border-white/10 px-4 py-3 font-bold text-white"
+                    >
+                      Messaging review
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Marketing
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Liam
+                    </td>
+                    <td
+                      class="border border-r-0 border-white/10 px-4 py-3 text-slate-300"
+                    >
+                      Thu
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-blue-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200"
+                        >Normal</span
+                      >
+                    </td>
+                    <td class="border border-r-0 border-white/10 px-4 py-3">
+                      <span
+                        class="rounded-full bg-blue-500/10 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200"
+                        >Queued</span
+                      >
+                    </td>
+                    <td class="rounded-r-2xl border border-white/10 px-4 py-3">
+                      <div class="flex items-center gap-2">
+                        <div class="h-2 w-28 rounded-full bg-white/10">
+                          <div
+                            class="h-2 w-[32%] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300"
+                          ></div>
+                        </div>
+                        <span class="text-xs text-slate-300">32%</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      document.querySelectorAll(".task-row").forEach((row) => {
+        row.addEventListener("click", () => {
+          const href = row.getAttribute("data-href");
+          if (href) window.location.href = href;
+        });
+      });
+
+      gsap.from(".panel", {
+        opacity: 0,
+        y: 12,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power2.out",
+      });
+    </script>
+  </body>
+</html>

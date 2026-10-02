@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: "#f3f7ff",
+                100: "#e6edff",
+                200: "#cedcff",
+                500: "#5b7cff",
+                600: "#3d67ff",
+                700: "#294cd8",
+                900: "#101a3d",
+              },
+              plum: "#7c5cff",
+              mint: "#4adeb8",
+              ink: "#0b1120",
+            },
+            boxShadow: {
+              luxe: "0 30px 80px rgba(52, 78, 160, 0.18)",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(124, 92, 255, 0.18),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(59, 130, 246, 0.12),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #070b14 0%, #0b1220 35%, #090d18 100%);
+      }
+      .panel {
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .panel:hover {
+        transform: translateY(-4px);
+        border-color: rgba(147, 160, 255, 0.38);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden">
+      <div
+        class="absolute left-[-10%] top-10 h-96 w-96 rounded-full bg-violet-500/15 blur-3xl"
+      ></div>
+      <div
+        class="absolute right-[-12%] bottom-0 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl"
+      ></div>
+    </div>
+
+    <div
+      class="relative mx-auto flex min-h-screen max-w-6xl items-center justify-center px-4 py-10"
+    >
+      <div
+        class="w-full max-w-5xl overflow-hidden rounded-[34px] border border-white/10 bg-[#0c1321]/85 shadow-[0_40px_90px_rgba(2,6,23,0.8)] backdrop-blur-xl"
+      >
+        <div class="grid lg:grid-cols-2">
+          <div
+            class="relative overflow-hidden bg-gradient-to-br from-[#090f1d] via-[#0d1528] to-[#171b33] p-8 text-white lg:p-10"
+          >
+            <div
+              class="absolute -right-12 top-10 h-40 w-40 rounded-full bg-violet-500/20 blur-3xl"
+            ></div>
+            <div
+              class="absolute -left-10 bottom-5 h-44 w-44 rounded-full bg-blue-500/15 blur-3xl"
+            ></div>
+
+            <div class="relative">
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-blue-500 text-brand-100"
+                >
+                  <i data-lucide="check-check"></i>
+                </div>
+                <div class="text-2xl font-black">TaskFlow</div>
+              </div>
+
+              <div
+                class="mt-12 rounded-[32px] border border-violet-400/20 bg-[#101b2f]/75 p-5 shadow-[0_30px_60px_rgba(67,56,202,0.25)] backdrop-blur-md"
+              >
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p
+                      class="text-xs uppercase tracking-[0.24em] text-slate-300"
+                    >
+                      Launch board
+                    </p>
+                    <h2 class="mt-2 text-2xl font-black">Q4 priorities</h2>
+                  </div>
+                  <span
+                    class="rounded-full bg-emerald-400/10 px-3 py-1.5 text-xs font-bold text-emerald-300"
+                    >+18.2%</span
+                  >
+                </div>
+
+                <div class="mt-6 grid grid-cols-[0.9fr_1.1fr] gap-4">
+                  <div class="flex items-center justify-center">
+                    <div
+                      class="relative flex h-28 w-28 items-center justify-center rounded-[30%] bg-[#0b1325] shadow-inner ring-1 ring-violet-400/20"
+                      style="
+                        background: conic-gradient(
+                          #8b5cf6 0 68%,
+                          rgba(148, 163, 184, 0.1) 68% 100%
+                        );
+                      "
+                    >
+                      <div
+                        class="flex h-20 w-20 items-center justify-center rounded-[26%] bg-[#101b2f] text-center"
+                      >
+                        <div>
+                          <div class="text-2xl font-black leading-none">68</div>
+                          <div
+                            class="text-[10px] uppercase tracking-[0.18em] text-slate-400"
+                          >
+                            done
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-3 pt-1">
+                    <div
+                      class="rounded-[22px] border border-white/10 bg-violet-500/10 p-3 shadow-sm rotate-[-3deg]"
+                    >
+                      <div
+                        class="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-violet-100"
+                      >
+                        <span>Design</span>
+                        <span>82%</span>
+                      </div>
+                      <div class="mt-2 h-2 rounded-full bg-white/10">
+                        <div
+                          class="h-2 w-[82%] rounded-full bg-gradient-to-r from-violet-400 to-blue-300"
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-[22px] border border-white/10 bg-[#0e1f36]/80 p-3 shadow-sm rotate-[2deg]"
+                    >
+                      <div
+                        class="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-slate-200"
+                      >
+                        <span>Launch</span>
+                        <span>64%</span>
+                      </div>
+                      <div class="mt-2 h-2 rounded-full bg-white/10">
+                        <div
+                          class="h-2 w-[64%] rounded-full bg-gradient-to-r from-indigo-400 to-violet-500"
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      class="rounded-[22px] border border-white/10 bg-[#0c1d32]/80 p-3 shadow-sm rotate-[-2deg]"
+                    >
+                      <div
+                        class="flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-slate-200"
+                      >
+                        <span>Marketing</span>
+                        <span>73%</span>
+                      </div>
+                      <div class="mt-2 h-2 rounded-full bg-white/10">
+                        <div
+                          class="h-2 w-[73%] rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 space-y-6">
+                <div>
+                  <p class="text-sm uppercase tracking-[0.22em] text-slate-300">
+                    Create account
+                  </p>
+                  <h1 class="mt-3 text-4xl font-black tracking-tight">
+                    Start organizing your priorities.
+                  </h1>
+                </div>
+
+                <ul class="space-y-4 text-slate-200">
+                  <li class="flex items-center gap-3">
+                    <span
+                      class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10"
+                      ><i
+                        data-lucide="check"
+                        class="h-4 w-4 text-emerald-400"
+                      ></i
+                    ></span>
+                    Personalized daily task planning
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span
+                      class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10"
+                      ><i
+                        data-lucide="check"
+                        class="h-4 w-4 text-emerald-400"
+                      ></i
+                    ></span>
+                    Shared project visibility
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <span
+                      class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10"
+                      ><i
+                        data-lucide="check"
+                        class="h-4 w-4 text-emerald-400"
+                      ></i
+                    ></span>
+                    Progress tracking and focus reports
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel p-8 lg:p-10 bg-[#0d1525]/90">
+            <div class="text-center lg:text-left">
+              <p
+                class="text-sm font-bold uppercase tracking-[0.22em] text-violet-300"
+              >
+                Join free
+              </p>
+              <h2 class="mt-3 text-3xl font-black text-white">Get started</h2>
+            </div>
+
+            <form id="signupForm" class="mt-8 space-y-5">
+              <div>
+                <label class="mb-2 block text-sm font-medium text-slate-300"
+                  >Full name</label
+                >
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Jane Doe"
+                  class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-[#111b2d]"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-medium text-slate-300"
+                  >Email</label
+                >
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-[#111b2d]"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-medium text-slate-300"
+                  >Password</label
+                >
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Minimum 8 characters"
+                  class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-[#111b2d]"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-medium text-slate-300"
+                  >Confirm password</label
+                >
+                <input
+                  name="passwordConfirm"
+                  type="password"
+                  placeholder="Repeat your password"
+                  class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-[#111b2d]"
+                  required
+                />
+              </div>
+
+              <div class="flex items-center gap-2 text-sm text-slate-300">
+                <input
+                  type="checkbox"
+                  checked
+                  class="h-4 w-4 rounded border-white/10 bg-white/5 text-violet-500 focus:ring-violet-500"
+                />
+                <span>I agree to the terms and privacy policy</span>
+              </div>
+
+              <div
+                id="signupMessage"
+                class="hidden rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm"
+              ></div>
+
+              <button
+                type="submit"
+                class="w-full rounded-2xl bg-gradient-to-r from-violet-500 via-indigo-500 to-blue-500 px-4 py-3 text-base font-semibold text-white shadow-lg shadow-violet-500/20 transition hover:scale-[1.01]"
+              >
+                Create account
+              </button>
+            </form>
+
+            <p class="mt-7 text-center text-sm text-slate-400">
+              Already have an account?
+              <a href="login.html" class="font-semibold text-violet-300"
+                >Log in</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+      gsap.from(".panel", {
+        opacity: 0,
+        y: 18,
+        duration: 0.7,
+        ease: "power2.out",
+      });
+
+      const signupForm = document.getElementById("signupForm");
+      const signupMessage = document.getElementById("signupMessage");
+
+      const showMessage = (element, text, type = "error") => {
+        element.textContent = text;
+        element.classList.remove(
+          "hidden",
+          "border-red-500/30",
+          "bg-red-500/10",
+          "text-red-200",
+          "border-emerald-500/30",
+          "bg-emerald-500/10",
+          "text-emerald-200",
+        );
+        if (type === "success") {
+          element.classList.add(
+            "border-emerald-500/30",
+            "bg-emerald-500/10",
+            "text-emerald-200",
+          );
+        } else {
+          element.classList.add(
+            "border-red-500/30",
+            "bg-red-500/10",
+            "text-red-200",
+          );
+        }
+        element.classList.remove("hidden");
+      };
+
+      signupForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(signupForm);
+        const payload = {
+          name: formData.get("name"),
+          email: formData.get("email"),
+          password: formData.get("password"),
+          passwordConfirm: formData.get("passwordConfirm"),
+        };
+
+        if (payload.password !== payload.passwordConfirm) {
+          showMessage(signupMessage, "Passwords do not match.", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "http://localhost:5000/api/v1/users/signup",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify(payload),
+            },
+          );
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.message || "Signup failed");
+          }
+
+          showMessage(
+            signupMessage,
+            "Account created successfully. Redirecting...",
+            "success",
+          );
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 800);
+        } catch (error) {
+          showMessage(
+            signupMessage,
+            error.message || "Signup failed. Please try again.",
+            "error",
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

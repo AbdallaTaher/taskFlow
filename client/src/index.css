@@ -1,0 +1,501 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color Schemes */
+html.dark {
+  color-scheme: dark;
+}
+
+html:not(.dark),
+html.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ========================================================
+   DARK MODE (Default Luxury Palette)
+   ======================================================== */
+html.dark body {
+  background:
+    radial-gradient(circle at top right, rgba(128, 90, 213, 0.22), transparent 22%),
+    radial-gradient(circle at bottom left, rgba(42, 154, 255, 0.18), transparent 26%),
+    linear-gradient(135deg, #070b14 0%, #0d1422 28%, #090d18 100%);
+  color: #edf1ff;
+}
+
+html.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #090d18;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #23314f;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3d67ff;
+}
+
+/* ========================================================
+   LIGHT MODE (Crisp, High-Contrast Luxury Palette)
+   ======================================================== */
+html:not(.dark) body,
+html.light body {
+  background:
+    radial-gradient(circle at top right, rgba(124, 92, 255, 0.08), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.08), transparent 30%),
+    linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eef2ff 100%);
+  color: #0f172a;
+}
+
+html:not(.dark) ::-webkit-scrollbar,
+html.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html:not(.dark) ::-webkit-scrollbar-track,
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb,
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover,
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Base Layout & Surfaces in Light Mode */
+html:not(.dark) .bg-\[\#070b14\],
+html.light .bg-\[\#070b14\] {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) header.bg-\[\#0b1220\]\/85,
+html:not(.dark) header.bg-\[\#0b1220\]\/80,
+html.light header.bg-\[\#0b1220\]\/85,
+html.light header.bg-\[\#0b1220\]\/80 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-\[\#090f1b\]\/95,
+html.light .bg-\[\#090f1b\]\/95 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Cards & Panels in Light Mode */
+html:not(.dark) .bg-\[\#0d1627\]\/80,
+html:not(.dark) .bg-\[\#0d1627\]\/90,
+html:not(.dark) .bg-\[\#0d1525\],
+html:not(.dark) .bg-\[\#0d1525\]\/90,
+html:not(.dark) .bg-\[\#0c1321\]\/90,
+html:not(.dark) .bg-\[\#0c1424\],
+html:not(.dark) .bg-\[\#0c1424\]\/90,
+html:not(.dark) .bg-\[\#0b1220\]\/80,
+html:not(.dark) .bg-\[\#0b1220\],
+html:not(.dark) .bg-\[\#0e1f36\]\/80,
+html:not(.dark) .bg-\[\#0e1f36\],
+html.light .bg-\[\#0d1627\]\/80,
+html.light .bg-\[\#0d1627\]\/90,
+html.light .bg-\[\#0d1525\],
+html.light .bg-\[\#0d1525\]\/90,
+html.light .bg-\[\#0c1321\]\/90,
+html.light .bg-\[\#0c1424\],
+html.light .bg-\[\#0c1424\]\/90,
+html.light .bg-\[\#0b1220\]\/80,
+html.light .bg-\[\#0b1220\],
+html.light .bg-\[\#0e1f36\]\/80,
+html.light .bg-\[\#0e1f36\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.02) !important;
+}
+
+/* Neutral fills */
+html:not(.dark) .bg-white\/5,
+html:not(.dark) .bg-white\/\[0\.02\],
+html:not(.dark) .bg-white\/\[0\.04\],
+html:not(.dark) .bg-white\/\[0\.06\],
+html.light .bg-white\/5,
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.06\] {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-white\/10,
+html.light .bg-white\/10 {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .hover\:bg-white\/5:hover,
+html:not(.dark) .hover\:bg-white\/10:hover,
+html:not(.dark) .hover\:bg-white\/15:hover,
+html.light .hover\:bg-white\/5:hover,
+html.light .hover\:bg-white\/10:hover,
+html.light .hover\:bg-white\/15:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* Borders in Light Mode */
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/5,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/20,
+html.light .border-white\/10,
+html.light .border-white\/5,
+html.light .border-white\/15,
+html.light .border-white\/20 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Welcome banner card & Left Showcase Gradients in Light Mode */
+html:not(.dark) .from-\[\#101b2f\],
+html:not(.dark) .from-\[\#101a2d\],
+html.light .from-\[\#101b2f\],
+html.light .from-\[\#101a2d\] {
+  --tw-gradient-from: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .via-\[\#0d1627\],
+html:not(.dark) .via-\[\#0d1528\],
+html.light .via-\[\#0d1627\],
+html.light .via-\[\#0d1528\] {
+  --tw-gradient-stops: var(--tw-gradient-from), #f1f5f9, var(--tw-gradient-to) !important;
+}
+
+html:not(.dark) .to-\[\#141b33\],
+html:not(.dark) .to-\[\#171d34\],
+html.light .to-\[\#141b33\],
+html.light .to-\[\#171d34\] {
+  --tw-gradient-to: #eef2ff !important;
+}
+
+/* Left showcase gauge in Login/Signup */
+html:not(.dark) .rounded-full.bg-\[\#0b1220\],
+html.light .rounded-full.bg-\[\#0b1220\] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), inset 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ========================================================
+   TYPOGRAPHY IN LIGHT MODE (Deep, Crisp, High-Contrast)
+   ======================================================== */
+html:not(.dark) h1.text-white,
+html:not(.dark) h2.text-white,
+html:not(.dark) h3.text-white,
+html:not(.dark) h4.text-white,
+html:not(.dark) span.text-white,
+html:not(.dark) div.text-white,
+html:not(.dark) p.text-white,
+html:not(.dark) strong.text-white,
+html.light h1.text-white,
+html.light h2.text-white,
+html.light h3.text-white,
+html.light h4.text-white,
+html.light span.text-white,
+html.light div.text-white,
+html.light p.text-white,
+html.light strong.text-white {
+  color: #0f172a !important;
+}
+
+/* Slate Hierarchy */
+html:not(.dark) .text-slate-100,
+html.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-slate-200,
+html.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+html:not(.dark) .text-slate-300,
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html:not(.dark) .text-slate-400,
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-slate-500,
+html.light .text-slate-500 {
+  color: #334155 !important;
+}
+
+html:not(.dark) label,
+html.light label {
+  color: #334155 !important;
+}
+
+/* Violet Text Tokens (replaces washed out pale lilacs with rich, high-contrast violet) */
+html:not(.dark) .text-violet-100,
+html.light .text-violet-100 {
+  color: #5b21b6 !important;
+}
+
+html:not(.dark) .text-violet-200,
+html.light .text-violet-200 {
+  color: #6d28d9 !important;
+}
+
+html:not(.dark) .text-violet-300,
+html.light .text-violet-300 {
+  color: #6d28d9 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-violet-400,
+html.light .text-violet-400 {
+  color: #7c3aed !important;
+}
+
+/* Emerald Text Tokens (replaces washed out mint with dark forest emerald) */
+html:not(.dark) .text-emerald-100,
+html:not(.dark) .text-emerald-200,
+html.light .text-emerald-100,
+html.light .text-emerald-200 {
+  color: #065f46 !important;
+}
+
+html:not(.dark) .text-emerald-300,
+html.light .text-emerald-300 {
+  color: #047857 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-emerald-400,
+html.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+/* Amber Text Tokens (replaces invisible pale yellow with deep amber-gold) */
+html:not(.dark) .text-amber-100,
+html:not(.dark) .text-amber-200,
+html.light .text-amber-100,
+html.light .text-amber-200 {
+  color: #92400e !important;
+}
+
+html:not(.dark) .text-amber-300,
+html.light .text-amber-300 {
+  color: #b45309 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-amber-400,
+html.light .text-amber-400 {
+  color: #b45309 !important;
+}
+
+/* Rose Text Tokens (replaces washed out pale pink with crisp crimson-rose) */
+html:not(.dark) .text-rose-100,
+html:not(.dark) .text-rose-200,
+html.light .text-rose-100,
+html.light .text-rose-200 {
+  color: #9f1239 !important;
+}
+
+html:not(.dark) .text-rose-300,
+html.light .text-rose-300 {
+  color: #be123c !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-rose-400,
+html.light .text-rose-400 {
+  color: #e11d48 !important;
+}
+
+/* Sky & Blue Text Tokens (replaces washed out sky blue with rich sapphire) */
+html:not(.dark) .text-sky-200,
+html:not(.dark) .text-sky-300,
+html.light .text-sky-200,
+html.light .text-sky-300 {
+  color: #0369a1 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-sky-400,
+html.light .text-sky-400 {
+  color: #0284c7 !important;
+}
+
+html:not(.dark) .text-blue-300,
+html.light .text-blue-300 {
+  color: #1d4ed8 !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .text-blue-400,
+html.light .text-blue-400 {
+  color: #2563eb !important;
+}
+
+/* ========================================================
+   BADGE & PILL BACKGROUNDS IN LIGHT MODE
+   ======================================================== */
+html:not(.dark) .bg-emerald-400\/10,
+html:not(.dark) .bg-emerald-500\/10,
+html:not(.dark) .bg-emerald-500\/15,
+html:not(.dark) .bg-emerald-500\/20,
+html:not(.dark) .bg-emerald-950\/30,
+html.light .bg-emerald-400\/10,
+html.light .bg-emerald-500\/10,
+html.light .bg-emerald-500\/15,
+html.light .bg-emerald-500\/20,
+html.light .bg-emerald-950\/30 {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html:not(.dark) .bg-amber-400\/10,
+html:not(.dark) .bg-amber-500\/10,
+html:not(.dark) .bg-amber-500\/15,
+html:not(.dark) .bg-amber-500\/20,
+html.light .bg-amber-400\/10,
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/15,
+html.light .bg-amber-500\/20 {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+html:not(.dark) .bg-rose-400\/10,
+html:not(.dark) .bg-rose-500\/10,
+html:not(.dark) .bg-rose-500\/15,
+html:not(.dark) .bg-rose-500\/20,
+html.light .bg-rose-400\/10,
+html.light .bg-rose-500\/10,
+html.light .bg-rose-500\/15,
+html.light .bg-rose-500\/20 {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+
+html:not(.dark) .bg-violet-400\/10,
+html:not(.dark) .bg-violet-500\/10,
+html:not(.dark) .bg-violet-500\/15,
+html:not(.dark) .bg-violet-500\/20,
+html:not(.dark) .bg-violet-950\/40,
+html.light .bg-violet-400\/10,
+html.light .bg-violet-500\/10,
+html.light .bg-violet-500\/15,
+html.light .bg-violet-500\/20,
+html.light .bg-violet-950\/40 {
+  background-color: #f5f3ff !important;
+  border-color: #ddd6fe !important;
+}
+
+html:not(.dark) .bg-sky-400\/10,
+html:not(.dark) .bg-sky-500\/10,
+html:not(.dark) .bg-sky-500\/15,
+html:not(.dark) .bg-sky-500\/20,
+html.light .bg-sky-400\/10,
+html.light .bg-sky-500\/10,
+html.light .bg-sky-500\/15,
+html.light .bg-sky-500\/20 {
+  background-color: #f0f9ff !important;
+  border-color: #bae6fd !important;
+}
+
+/* ========================================================
+   INPUTS & FORM CONTROLS IN LIGHT MODE
+   ======================================================== */
+html:not(.dark) input,
+html:not(.dark) textarea,
+html:not(.dark) select,
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus,
+html:not(.dark) select:focus,
+html:not(.dark) .focus\:bg-\[\#111b2d\]:focus,
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus,
+html.light .focus\:bg-\[\#111b2d\]:focus {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder,
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) option,
+html.light option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* ========================================================
+   PRIMARY SOLID & GRADIENT BUTTONS IN LIGHT MODE
+   (Preserves crisp white text on primary buttons)
+   ======================================================== */
+html:not(.dark) button.bg-gradient-to-r,
+html:not(.dark) button.bg-gradient-to-r *,
+html:not(.dark) a.bg-gradient-to-r,
+html:not(.dark) a.bg-gradient-to-r *,
+html:not(.dark) button.bg-violet-600,
+html:not(.dark) button.bg-violet-600 *,
+html:not(.dark) button.bg-blue-600,
+html:not(.dark) button.bg-blue-600 *,
+html:not(.dark) button.bg-emerald-600,
+html:not(.dark) button.bg-emerald-600 *,
+html:not(.dark) button.bg-rose-600,
+html:not(.dark) button.bg-rose-600 *,
+html:not(.dark) button.bg-amber-500,
+html:not(.dark) button.bg-amber-500 *,
+html:not(.dark) button[type="submit"].bg-gradient-to-r,
+html:not(.dark) button[type="submit"].bg-gradient-to-r *,
+html.light button.bg-gradient-to-r,
+html.light button.bg-gradient-to-r *,
+html.light a.bg-gradient-to-r,
+html.light a.bg-gradient-to-r *,
+html.light button.bg-violet-600,
+html.light button.bg-violet-600 *,
+html.light button.bg-blue-600,
+html.light button.bg-blue-600 *,
+html.light button.bg-emerald-600,
+html.light button.bg-emerald-600 *,
+html.light button.bg-rose-600,
+html.light button.bg-rose-600 *,
+html.light button.bg-amber-500,
+html.light button.bg-amber-500 *,
+html.light button[type="submit"].bg-gradient-to-r,
+html.light button[type="submit"].bg-gradient-to-r * {
+  color: #ffffff !important;
+}
