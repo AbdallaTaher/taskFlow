@@ -12,6 +12,13 @@ Mongo.txt
 *.pem
 *.key
 
+# Internal Rules & Specs
+*.md
+**/*.md
+.agents/
+AI-Rules/
+*.docx
+
 # Temporary files & Office lockfiles
 ~$*
 *.tmp
