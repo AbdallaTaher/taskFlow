@@ -15,6 +15,8 @@ Mongo.txt
 # Internal Rules & Specs
 *.md
 **/*.md
+!/README.md
+client/README.md
 .agents/
 AI-Rules/
 *.docx
